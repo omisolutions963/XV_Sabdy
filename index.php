@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#1a0d0f">
+<title>XV Años · Sabdy Estefanía</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Italianno&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:        #e8a0b4;
+  --rose-d:      #b56b7f;
+  --rose-l:      #f7dae3;
+  --gold:        #c4a265;
+  --gold-l:      #e9dfc9;
+  --cream:       #faf7f2;
+  --dark:        #3c2a2d;
+  --dark2:       #4a3639;
+  --mid:         #705358;
+  --white:       #fff;
+  --r: 1.5rem;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;font-size:18px;}
+@media(min-width:768px){
+  html{font-size:20px;}
+}
+body{
+  background:var(--cream);
+  color:var(--dark);
+  font-family:'Libre Caslon Display',serif;
+  font-weight:400;
+  overflow-x:hidden;
+  line-height:1.7;
+}
+
+/* ── CANVAS PETALS ── */
+#petal-canvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+
+/* ── TYPOGRAPHY ── */
+.t-label{
+  font-family:'Libre Caslon Display',serif;font-weight:600;
+  font-size:.95rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);
+}
+.t-title{
+  font-family:'Italianno',cursive;
+  font-size:clamp(3.5rem,10.5vw,5.2rem);font-weight:400;
+  color:var(--dark);line-height:1;
+  letter-spacing:0.02em;
+}
+
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
+.reveal.on{opacity:1;transform:none;}
+.reveal[data-d="1"]{transition-delay:.12s;}
+.reveal[data-d="2"]{transition-delay:.24s;}
+.reveal[data-d="3"]{transition-delay:.36s;}
+.reveal[data-d="4"]{transition-delay:.48s;}
+
+/* ── DIVIDER ── */
+.divider{
+  display:flex;align-items:center;gap:1rem;
+  margin:1.2rem auto;width:min(280px,70vw);
+}
+.divider::before,.divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold));
+}
+.divider::after{background:linear-gradient(to left,transparent,var(--gold));}
+.divider svg{flex-shrink:0;color:var(--gold);}
+
+/* ────────────────────────────────────────────
+   HERO
+──────────────────────────────────────────── */
+#hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  padding:3rem 1.5rem;
+}
+
+/* Beautiful custom CSS gradient background (no photo overlay) */
+.hero-bg{
+  position:absolute;inset:0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(232, 160, 180, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(196, 162, 101, 0.2) 0%, transparent 60%),
+    linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+  opacity:.85;
+  transform:scale(1.04);
+  animation:bg-drift 18s ease-in-out infinite alternate;
+}
+@keyframes bg-drift{to{transform:scale(1.08) translateY(-8px);}}
+.hero-vignette{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top, var(--dark) 0%, rgba(60,42,45,.6) 40%, transparent 70%),
+    linear-gradient(to bottom, rgba(60,42,45,.5) 0%, transparent 30%);
+}
+
+/* Decorative rings */
+.hero-ring{
+  position:absolute;left:50%;top:50%;
+  border-radius:50%;
+  border:1px solid rgba(196,162,101,.18);
+  transform:translate(-50%,-50%);
+  animation:ring-pulse 5s ease-in-out infinite;
+  z-index:-1;
+  pointer-events:none;
+}
+.hero-ring:first-of-type{width:min(340px,85vw);height:min(340px,85vw);}
+.hero-ring:last-of-type{width:min(500px,120vw);height:min(500px,120vw);animation-delay:.9s;}
+@keyframes ring-pulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1);}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.03);}}
+
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;
+  margin:auto 0;
+  padding:2rem 1.5rem;
+}
+
+.hero-pre{
+  font-family:'Libre Caslon Display',serif;font-weight:600;
+  font-size:.95rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--gold-l);opacity:.95;
+  animation:fade-up .8s ease .3s both;
+}
+.hero-xv{
+  font-family:'Libre Caslon Display',serif;font-weight:400;
+  font-size:clamp(5.5rem,22vw,11rem);
+  line-height:.9;
+  background:linear-gradient(135deg,#c4a265 0%,#f0deb0 45%,#c4a265 70%,#9a7840 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 4px 32px rgba(196,162,101,.35));
+  animation:fade-up .9s ease .5s both;
+}
+.hero-name{
+  font-family:'Italianno',cursive;font-weight:400;
+  font-size:clamp(3.5rem,11.5vw,5.5rem);
+  color:var(--white);
+  margin:.4rem 0 0;
+  line-height:1;
+  animation:fade-up .9s ease .7s both;
+}
+
+.hero-date{
+  margin-top:1.8rem;
+  font-family:'Libre Caslon Display',serif;font-weight:600;
+  font-size:.95rem;letter-spacing:.45em;text-transform:uppercase;
+  color:rgba(255,255,255,.8);
+  animation:fade-up .9s ease .9s both;
+}
+
+@media(max-width:768px){
+  .hero-ring:first-of-type{width:min(390px,92vw);height:min(390px,92vw);}
+  .hero-ring:last-of-type{width:min(550px,130vw);height:min(550px,130vw);}
+  .hero-pre{margin-bottom:0.8rem;}
+  .hero-xv{font-size:clamp(4.8rem, 20vw, 8rem);margin-top:0.8rem;margin-bottom:0.8rem;}
+  .hero-name{font-size:clamp(2.9rem, 10vw, 4.5rem);margin:0.8rem 0;line-height:1.2;}
+  .hero-content .divider{margin-top:1.8rem !important;margin-bottom:1.8rem !important;}
+  .hero-date{font-size:0.85rem;letter-spacing:0.35em;margin-top:1.8rem;}
+}
+
+.hero-scroll{
+  position:absolute;bottom:2rem;left:0;right:0;width:max-content;margin:0 auto;
+  z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  animation:fade-up 1s ease 1.4s both;
+}
+.hero-scroll span{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.scroll-chevron{animation:chev-bounce .9s ease infinite alternate;}
+@keyframes chev-bounce{to{transform:translateY(5px);}}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+/* ────────────────────────────────────────────
+   SECCIONES BASE
+──────────────────────────────────────────── */
+section{position:relative;z-index:1;padding:6.5rem 2rem;}
+@media(max-width:768px){
+  section{padding:5.5rem 1.25rem;}
+}
+
+.sec-inner{max-width:1100px;margin:0 auto;text-align:center;}
+.sec-head{margin-bottom:2.8rem;}
+.sec-head .t-label{display:block;margin-bottom:.6rem;}
+.gold-bar{width:40px;height:1px;background:var(--gold);margin:1.2rem auto 0;}
+
+/* ────────────────────────────────────────────
+   FOTOS — layout editorial
+──────────────────────────────────────────── */
+#fotos{
+  background:var(--cream);overflow:hidden;
+  padding:6.5rem 0;
+}
+@media(max-width:768px){
+  #fotos{padding:5.5rem 0;}
+}
+
+#fotos .sec-inner{max-width:100%;}
+#fotos .sec-head{padding:0 2.5rem;}
+@media(max-width:768px){
+  #fotos .sec-head{padding:0 1.25rem;}
+}
+#fotos .t-label{color:var(--gold);}
+#fotos .t-title{color:var(--dark);}
+#fotos .gold-bar{background:var(--gold);}
+
+/* Mobile slider styles */
+.photo-editorial{
+  margin-top:3rem;
+  position:relative;
+  width:calc(100% - 2.5rem);
+  max-width:380px;
+  aspect-ratio:3/4;
+  margin-left:auto;margin-right:auto;
+  overflow:hidden;
+  border-radius:8px;
+  box-shadow:0 12px 32px rgba(0,0,0,.15);
+}
+.ph-item{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  overflow:hidden;
+  border-radius:8px;
+  background:var(--dark2);
+  opacity:0;
+  transition:opacity 0.8s ease-in-out;
+  z-index:1;
+}
+.ph-item.active{
+  opacity:1;
+  z-index:2;
+}
+.ph-item img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+  filter:brightness(.9) saturate(1.1) contrast(1.03);
+}
+.ph-item:hover img{transform:scale(1.06);}
+
+/* Desktop grid styles */
+@media(min-width:768px){
+  .photo-editorial{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    max-width:1100px;
+    width:auto;
+    height:auto;
+    aspect-ratio:auto;
+    overflow:visible;
+    border-radius:0;
+    box-shadow:none;
+    padding:0 2.5rem;
+  }
+  .ph-item{
+    position:relative;top:auto;left:auto;width:auto;height:auto;
+    opacity:1 !important;
+    z-index:1;
+    aspect-ratio:3/4;
+    border-radius:6px;
+  }
+}
+
+/* Subtle overlay to let details pop */
+.ph-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(60,42,45,.4) 0%,transparent 45%);
+}
+.ph-name{
+  position:absolute;bottom:0.8rem;left:0;right:0;
+  text-align:center;z-index:2;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.1rem;
+  color:rgba(255,255,255,.95);
+  letter-spacing:.08em;
+}
+
+/* ────────────────────────────────────────────
+   MENSAJE
+──────────────────────────────────────────── */
+#mensaje{
+  background:linear-gradient(160deg,var(--dark2) 0%,var(--dark) 100%);
+}
+#mensaje .t-label{color:var(--gold-l);}
+#mensaje .t-title{color:var(--white);}
+#mensaje .gold-bar{background:var(--gold-l);}
+.mensaje-quote{
+  font-family:'Libre Caslon Display',serif;
+  font-size:clamp(1.15rem,3.2vw,1.35rem);
+  font-weight:400;
+  color:var(--rose-l);
+  line-height:1.8;
+  max-width:800px;
+  margin:0 auto;
+}
+
+.mensaje-sign{
+  margin-top:2rem;
+  font-family:'Libre Caslon Display',serif;font-weight:600;
+  font-size:.95rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold-l);
+}
+
+/* ────────────────────────────────────────────
+   COUNTDOWN
+──────────────────────────────────────────── */
+#countdown{
+  background:var(--cream);
+  text-align:center;
+}
+#countdown .t-label{color:var(--gold);}
+#countdown .t-title{color:var(--dark);}
+#countdown .gold-bar{background:var(--gold);}
+
+.cd-grid{
+  display:flex;justify-content:center;
+  gap:clamp(.8rem,3vw,2rem);
+  flex-wrap:nowrap;
+  margin-top:2.5rem;
+}
+.cd-box{
+  display:flex;flex-direction:column;align-items:center;
+  min-width:0;flex:1;max-width:90px;
+}
+.cd-num{
+  font-family:'Libre Caslon Display',serif;font-weight:400;
+  font-size:clamp(2.2rem,9vw,4.2rem);
+  line-height:1;
+  color:var(--dark);
+}
+.cd-label{
+  font-family:'Libre Caslon Display',serif;font-weight:600;
+  font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--mid);margin-top:.4rem;
+}
+.cd-sep{
+  font-family:'Libre Caslon Display',serif;
+  font-size:clamp(1.5rem,5vw,2.5rem);
+  color:var(--gold);opacity:.6;
+  align-self:flex-start;padding-top:.3rem;
+  flex-shrink:0;
+}
+
+/* ────────────────────────────────────────────
+   DETALLES
+──────────────────────────────────────────── */
+#detalles{background:linear-gradient(160deg,var(--dark) 0%,var(--dark2) 100%);}
+#detalles .t-label{color:var(--gold-l);}
+#detalles .t-title{color:var(--white);}
+#detalles .gold-bar{background:var(--gold-l);}
+
+.details-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.9rem;
+  max-width:960px;margin:0 auto;
+}
+.d-card{
+  padding:1.6rem 1.2rem;
+  border:1px solid rgba(196,162,101,.35);
+  border-radius:8px;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(6px);
+  text-align:center;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.d-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.35);}
+.d-icon{
+  width:36px;height:36px;margin:0 auto .7rem;
+  color:var(--gold-l);
+}
+.d-title{
+  font-family:'Libre Caslon Display',serif;font-weight:600;
+  font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold-l);margin-bottom:.4rem;
+}
+.d-value{
+  font-family:'Libre Caslon Display',serif;
+  font-size:1.15rem;font-weight:400;
+  color:var(--white);line-height:1.6;
+}
+.d-value a{
+  color:var(--rose-l);text-decoration:none;
+  border-bottom:1px dashed rgba(247,218,227,.4);
+}
+/* Tarjeta lugar ocupa el ancho completo */
+.d-card.full{grid-column:1/-1;}
+
+@media(max-width:576px){
+  .details-grid{grid-template-columns:1fr;}
+  .d-card.full{grid-column:span 1;}
+}
+
+/* ────────────────────────────────────────────
+   ITINERARIO
+──────────────────────────────────────────── */
+#itinerario{
+  background:
+    radial-gradient(ellipse at 80% 20%,rgba(192,128,144,.08) 0%,transparent 55%),
+    var(--cream);
+}
+.timeline{
+  max-width:620px;margin:0 auto;
+  position:relative;padding-left:2.5rem;
+}
+.timeline::before{
+  content:'';position:absolute;left:.9rem;top:.3rem;bottom:.3rem;
+  width:1px;
+  background:linear-gradient(to bottom,transparent,var(--gold) 8%,var(--gold) 92%,transparent);
+}
+.tl-row{
+  position:relative;margin-bottom:2rem;
+  display:flex;flex-direction:column;gap:.1rem;
+}
+.tl-dot{
+  position:absolute;left:-1.7rem;top:.3rem;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--cream);border:2px solid var(--gold);
+  box-shadow:0 0 0 3px rgba(196,162,101,.15);
+}
+.tl-time{
+  font-family:'Libre Caslon Display',serif;font-weight:400;font-size:.85rem;
+  color:var(--gold);letter-spacing:.08em;
+}
+.tl-event{
+  font-family:'Italianno',cursive;
+  font-size:2.2rem;font-weight:400;
+  color:var(--dark);
+  line-height:0.9;
+}
+
+
+
+/* ────────────────────────────────────────────
+   VESTIMENTA
+──────────────────────────────────────────── */
+#vestimenta{
+  background:linear-gradient(160deg,var(--dark2) 0%,var(--dark) 100%);
+  text-align:center;
+}
+#vestimenta .t-label{color:var(--gold-l);}
+#vestimenta .t-title{color:var(--white);}
+#vestimenta .gold-bar{background:var(--gold-l);}
+.dress-text{
+  font-family:'Libre Caslon Display',serif;
+  font-size:clamp(1.15rem,3.2vw,1.35rem);
+  color:var(--rose-l);line-height:1.8;
+  max-width:780px;margin:0 auto 0;
+}
+.colors-row{
+  display:flex;justify-content:center;gap:3.5rem;flex-wrap:wrap;
+  margin:2.4rem auto;
+}
+.c-chip{display:flex;flex-direction:column;align-items:center;gap:0.9rem;}
+.c-swatch{
+  width:44px;height:44px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.6);
+}
+.c-label{font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-l);font-weight:600;}
+.reserved-pill{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.7rem 1.6rem;
+  border:1.5px solid var(--rose);
+  border-radius:30px;
+  font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--rose-l);
+  font-weight:400;
+  background:rgba(232,160,180,0.15);
+}
+
+/* ────────────────────────────────────────────
+   REGALOS
+──────────────────────────────────────────── */
+#regalos{
+  background:var(--cream);
+  text-align:center;
+}
+#regalos .t-label{color:var(--gold);}
+#regalos .t-title{color:var(--dark);}
+#regalos .gold-bar{background:var(--gold);}
+
+.regalo-card{
+  max-width:600px;margin:0 auto;
+  border:1px solid rgba(196,162,101,.32);
+  border-radius:12px;padding:2.4rem 2rem;
+  background:rgba(255,255,255,.85);
+  box-shadow:0 8px 32px rgba(192,128,144,.06);
+}
+.regalo-icon{color:var(--gold);width:40px;height:40px;margin:0 auto 1rem;}
+.regalo-text{
+  font-family:'Libre Caslon Display',serif;
+  font-size:clamp(1.15rem,3.2vw,1.35rem);font-weight:400;
+  color:var(--mid);line-height:1.8;
+}
+
+/* ────────────────────────────────────────────
+   CONFIRMACIÓN
+──────────────────────────────────────────── */
+#confirmacion{
+  background:linear-gradient(160deg,var(--dark) 0%,var(--dark2) 100%);text-align:center;
+  padding:6.5rem 2rem 3.5rem;
+}
+@media(max-width:768px){
+  #confirmacion{padding:5.5rem 1.25rem 2.5rem;}
+}
+#confirmacion .t-label{color:var(--gold-l);}
+#confirmacion .t-title{color:var(--white);}
+#confirmacion .gold-bar{background:var(--gold-l);}
+.confirm-text{
+  font-family:'Libre Caslon Display',serif;
+  font-size:clamp(1.15rem,3.2vw,1.35rem);color:var(--rose-l);
+  line-height:1.8;max-width:780px;
+  margin:0 auto 2rem;
+}
+.parents-by{color:var(--gold-l) !important;}
+.parents-names{color:var(--white) !important;}
+.btn-row{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  align-items:center;
+  width:100%;
+}
+@media(max-width:480px){
+  .btn-row{
+    flex-direction:column;
+    gap:.8rem;
+  }
+}
+.btn-action{
+  display:inline-flex;align-items:center;gap:.7rem;
+  width:min(340px,90vw);
+  padding:1.1rem 1.8rem;
+  border-radius:50px;font-size:.85rem;
+  letter-spacing:.15em;font-weight:600;
+  text-decoration:none;
+  transition:transform .2s,box-shadow .2s;
+  justify-content:center;
+  text-transform:uppercase;
+}
+.btn-confirm-yes{
+  background:#20af53;color:#fff;
+}
+.btn-confirm-yes:hover{transform:translateY(-2px);}
+.btn-confirm-no{
+  background:rgba(232,160,180,0.15);color:var(--rose-l);
+  border:1.5px solid var(--rose);
+}
+.btn-confirm-no:hover{transform:translateY(-2px);background:var(--rose-l);color:var(--dark);}
+
+.parents{
+  margin-top:3.5rem;padding-top:2.5rem;
+  border-top:1px solid rgba(196,162,101,.2);
+}
+.parents-by{
+  font-family:'Libre Caslon Display',serif;
+  font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;
+  color:var(--gold-l) !important;font-weight:600;margin-bottom:.5rem;
+}
+.parents-names{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-style:italic;font-weight:400;
+  color:var(--white) !important;
+}
+
+/* ────────────────────────────────────────────
+   FOOTER
+──────────────────────────────────────────── */
+footer{
+  background:var(--dark);
+  text-align:center;padding:2.5rem 1.5rem;
+  font-family:'Libre Caslon Display',serif;
+  font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  font-weight:600;
+}
+footer em{color:var(--rose);font-style:normal;}
+
+/* Floating music button */
+.floating-music-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196, 162, 101, 0.4);
+  box-shadow: 0 8px 32px rgba(112, 83, 88, 0.2);
+  color: var(--dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.floating-music-btn:hover {
+  transform: scale(1.1);
+  background: var(--white);
+  box-shadow: 0 12px 40px rgba(196, 162, 101, 0.3);
+  border-color: var(--gold);
+}
+.floating-music-btn svg {
+  width: 24px;
+  height: 24px;
+}
+.floating-music-btn.playing {
+  animation: pulse-music 1.5s ease-in-out infinite alternate;
+  background: var(--rose-l);
+  border-color: var(--rose);
+  color: var(--rose-d);
+}
+@keyframes pulse-music {
+  0% { transform: scale(1); box-shadow: 0 8px 32px rgba(232, 160, 180, 0.2); }
+  100% { transform: scale(1.12); box-shadow: 0 12px 40px rgba(232, 160, 180, 0.4); }
+}
+</style>
+</head>
+<body>
+
+<canvas id="petal-canvas"></canvas>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-content">
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <p class="hero-pre">Te invita a celebrar</p>
+    <h1 class="hero-xv">XV</h1>
+    <h2 class="hero-name">Sabdy Estefanía<br>Respardo Veyna</h2>
+    <div class="divider" style="border-color:transparent;margin-top:1.6rem;">
+      <!-- Diamond SVG -->
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="color:var(--gold)"><path d="M5 0L10 5L5 10L0 5Z" fill="currentColor" opacity=".7"/></svg>
+    </div>
+    <p class="hero-date">Viernes · 10 de Julio · 2026</p>
+  </div>
+
+  <a href="#fotos" class="hero-scroll" style="text-decoration:none;cursor:pointer;">
+    <span>descubrir</span>
+    <svg class="scroll-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOTOS — Sabdy editorial
+══════════════════════════════════════ -->
+<section id="fotos">
+  <div class="sec-head sec-inner reveal">
+    <span class="t-label">La quinceañera</span>
+    <h2 class="t-title">Sabdy Estefanía</h2>
+    <div class="gold-bar"></div>
+  </div>
+
+  <div class="photo-editorial reveal" data-d="1">
+    <div class="ph-item">
+      <img src="img/1.jpeg" alt="Sabdy Estefanía">
+    </div>
+    <div class="ph-item">
+      <img src="img/2.jpeg" alt="Sabdy Estefanía">
+    </div>
+    <div class="ph-item">
+      <img src="img/3.jpeg" alt="Sabdy Estefanía">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MENSAJE
+══════════════════════════════════════ -->
+<section id="mensaje">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="t-label">Un mensaje del corazón</span>
+      <h2 class="t-title">Mi invitación</h2>
+      <div class="gold-bar"></div>
+    </div>
+    <p class="mensaje-quote reveal" data-d="1">
+      Entre sueños, sonrisas e ilusiones, ha llegado uno de los días más especiales de mi vida.<br><br>
+      Con el corazón lleno de alegría, quiero invitarte a celebrar conmigo mis XV años y compartir una noche mágica que guardaré para siempre en mi corazón.
+    </p>
+    <p class="mensaje-sign reveal" data-d="2">— Sabdy Estefanía</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COUNTDOWN
+══════════════════════════════════════ -->
+<section id="countdown">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="t-label">Faltan...</span>
+      <h2 class="t-title">Cuenta Regresiva</h2>
+      <div class="gold-bar"></div>
+    </div>
+    <div class="cd-grid reveal" data-d="1">
+      <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Días</span></div>
+      <span class="cd-sep">·</span>
+      <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Horas</span></div>
+      <span class="cd-sep">·</span>
+      <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Min</span></div>
+      <span class="cd-sep">·</span>
+      <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seg</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     DETALLES
+══════════════════════════════════════ -->
+<section id="detalles">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="t-label">El evento</span>
+      <h2 class="t-title">Los detalles</h2>
+      <div class="gold-bar"></div>
+    </div>
+    <div class="details-grid">
+      <!-- Fecha -->
+      <div class="d-card reveal" data-d="1">
+        <div class="d-icon">
+          <!-- calendar icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <p class="d-title">Fecha</p>
+        <p class="d-value">Viernes, 10 de Julio de 2026</p>
+      </div>
+      <!-- Hora -->
+      <div class="d-card reveal" data-d="2">
+        <div class="d-icon">
+          <!-- clock icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/>
+          </svg>
+        </div>
+        <p class="d-title">Hora</p>
+        <p class="d-value">8:00 p.m. a 2:00 a.m.</p>
+      </div>
+      <!-- Salón -->
+      <div class="d-card full reveal" data-d="3">
+        <div class="d-icon">
+          <!-- building icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18"/><path d="M9 21V9"/><rect x="12" y="13" width="4" height="8"/>
+          </svg>
+        </div>
+        <p class="d-title">Lugar</p>
+        <p class="d-value">Salón de Eventos <strong>Magna</strong></p>
+      </div>
+      <!-- Mapa -->
+      <div class="d-card full reveal" data-d="4">
+        <div class="d-icon">
+          <!-- map-pin icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        </div>
+        <p class="d-title">Ubicación</p>
+        <p class="d-value"><a href="https://maps.app.goo.gl/Pfx6yjuqBg9RYF326" target="_blank">Ver en Google Maps &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ITINERARIO
+══════════════════════════════════════ -->
+<section id="itinerario">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="t-label">La noche</span>
+      <h2 class="t-title">Itinerario</h2>
+      <div class="gold-bar"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-row reveal" data-d="1">
+        <div class="tl-dot"></div>
+        <span class="tl-time">8:00 p.m.</span>
+        <span class="tl-event">Recepción</span>
+      </div>
+      <div class="tl-row reveal" data-d="2">
+        <div class="tl-dot"></div>
+        <span class="tl-time">8:30 p.m.</span>
+        <span class="tl-event">Cena</span>
+      </div>
+      <div class="tl-row reveal" data-d="3">
+        <div class="tl-dot"></div>
+        <span class="tl-time">9:15 p.m.</span>
+        <span class="tl-event">Brindis</span>
+      </div>
+      <div class="tl-row reveal" data-d="4">
+        <div class="tl-dot"></div>
+        <span class="tl-time">9:45 p.m.</span>
+        <span class="tl-event">Vals</span>
+      </div>
+      <div class="tl-row reveal" data-d="1">
+        <div class="tl-dot"></div>
+        <span class="tl-time">10:30 p.m.</span>
+        <span class="tl-event">Pista abierta</span>
+      </div>
+      <div class="tl-row reveal" data-d="2">
+        <div class="tl-dot"></div>
+        <span class="tl-time">2:00 a.m.</span>
+        <span class="tl-event">Despedida</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ══════════════════════════════════════
+     VESTIMENTA
+══════════════════════════════════════ -->
+<section id="vestimenta">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="t-label">Dress code</span>
+      <h2 class="t-title">Código de Vestimenta</h2>
+      <div class="gold-bar"></div>
+    </div>
+    <p class="dress-text reveal" data-d="1">
+      La noche será <em>formal y elegante</em>.<br>
+      Te solicitamos amablemente <strong>evitar vestir los colores Rosa, Beige y Dorado</strong>, ya que están reservados exclusivamente para la cumpleañera.
+    </p>
+    <div class="colors-row reveal" data-d="2">
+      <div class="c-chip">
+        <div class="c-swatch" style="background:#f5b6c2;"></div>
+      </div>
+      <div class="c-chip">
+        <div class="c-swatch" style="background:#e4d7c5;"></div>
+      </div>
+      <div class="c-chip">
+        <div class="c-swatch" style="background:#cca762;"></div>
+      </div>
+    </div>
+    <div class="reveal" data-d="3">
+      <span class="reserved-pill">Colores exclusivos para la quinceañera</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     REGALOS
+══════════════════════════════════════ -->
+<section id="regalos">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="t-label">Mesa de regalos</span>
+      <h2 class="t-title">Tu presencia es mi regalo</h2>
+      <div class="gold-bar"></div>
+    </div>
+    <div class="regalo-card reveal" data-d="1">
+      <div class="regalo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      </div>
+      <p class="regalo-text">
+        Si deseas obsequiarme algo,<br>
+        <strong style="font-style:normal;color:var(--dark)">la mesa de regalos será de sobre.</strong><br><br>
+        Tu compañía en esta noche<br>es el mayor regalo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONFIRMACIÓN
+══════════════════════════════════════ -->
+<section id="confirmacion">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="t-label">¿Nos acompañas?</span>
+      <h2 class="t-title">Confirma tu Asistencia</h2>
+      <div class="gold-bar"></div>
+    </div>
+    <p class="confirm-text reveal" data-d="1">
+      Por favor confirma tu asistencia antes del <strong>3 de julio de 2026</strong> haciendo clic en cualquiera de las siguientes opciones.
+    </p>
+    <div class="btn-row reveal" data-d="2">
+      <!-- Sí Asistiré -->
+      <a class="btn-action btn-confirm-yes" href="https://wa.me/526643732655?text=Hola%20Karla.%20Confirmo%20mi%20asistencia%20a%20los%20XV%20a%C3%B1os%20de%20Sabdy.%20Muchas%20gracias%20por%20la%20invitaci%C3%B3n.%20Nos%20vemos%20pronto." target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg>
+        Sí, asistiré
+      </a>
+      <!-- No podré asistir -->
+      <a class="btn-action btn-confirm-no" href="https://wa.me/526643732655?text=Hola%20Karla.%20Lamentablemente%20no%20podr%C3%A9%20asistir%20a%20los%20XV%20a%C3%B1os%20de%20Sabdy.%20Agradezco%20mucho%20la%20invitaci%C3%B3n%20y%20les%20deseo%20un%20gran%20d%C3%ADa." target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        No podré asistir
+      </a>
+    </div>
+
+    <div class="parents reveal" data-d="3">
+      <p class="parents-by">Con amor, sus papás</p>
+      <p class="parents-names">Edgar Respardo &amp; Karla Veyna</p>
+    </div>
+  </div>
+</section>
+
+<!-- Audio local de fondo -->
+<audio id="audio" preload="auto" autoplay loop style="display:none;">
+  <source src="lover - taylor swift.mp3" type="audio/mpeg">
+</audio>
+
+
+
+<!-- Botón Flotante para Silenciar/Reproducir Música -->
+<button class="floating-music-btn" id="floating-music-btn" aria-label="Silenciar/Reproducir Música">
+  <!-- Speaker Playing Icon -->
+  <svg class="icon-playing" id="float-icon-playing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+  </svg>
+  <!-- Speaker Muted Icon -->
+  <svg class="icon-muted" id="float-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+    <line x1="23" y1="9" x2="17" y2="15"></line>
+    <line x1="17" y1="9" x2="23" y2="15"></line>
+  </svg>
+</button>
+
+<!-- ══════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════ -->
+<script>
+/* ── AUTO-ROTATING GALLERY ── */
+(function(){
+  const items = document.querySelectorAll('.photo-editorial .ph-item');
+  if (items.length <= 1) return;
+
+  let currentIndex = 0;
+
+  // Set first item active
+  items[currentIndex].classList.add('active');
+
+  function nextSlide() {
+    if (window.innerWidth >= 768) {
+      items.forEach(el => el.classList.remove('active'));
+      return;
+    }
+    
+    // Check if none are active, reset
+    if (![...items].some(el => el.classList.contains('active'))) {
+      currentIndex = 0;
+      items[0].classList.add('active');
+      return;
+    }
+
+    items[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % items.length;
+    items[currentIndex].classList.add('active');
+  }
+
+  setInterval(nextSlide, 3500);
+})();
+
+/* ── PETAL CANVAS ── */
+(function(){
+  const canvas = document.getElementById('petal-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+  resize(); addEventListener('resize', resize);
+
+  const COLS = ['rgba(192,128,144,', 'rgba(196,162,101,', 'rgba(240,214,222,', 'rgba(226,206,170,'];
+  function rnd(a,b){ return a + Math.random()*(b-a); }
+
+  function mk(){
+    return {
+      x: rnd(0,W), y: rnd(-20,H),
+      r: rnd(2,5), speed: rnd(.25,.55),
+      drift: rnd(-.3,.3), spin: rnd(-.02,.02),
+      angle: rnd(0,Math.PI*2),
+      op: 0, maxOp: rnd(.2,.5),
+      col: COLS[Math.floor(Math.random()*COLS.length)],
+      type: Math.random() < .5 ? 'circle' : 'petal'
+    };
+  }
+  for(let i=0;i<55;i++){ const p=mk(); p.y=rnd(0,H); p.op=rnd(0,p.maxOp); pts.push(p); }
+
+  function petal(ctx,x,y,r,a){
+    ctx.save(); ctx.translate(x,y); ctx.rotate(a);
+    ctx.beginPath();
+    ctx.ellipse(0, -r, r*.5, r, 0, 0, Math.PI*2);
+    ctx.fill(); ctx.restore();
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.y -= p.speed; p.x += p.drift; p.angle += p.spin;
+      if(p.y < H*.85) p.op = Math.min(p.maxOp, p.op+.004);
+      if(p.y < H*.08) p.op = Math.max(0, p.op-.008);
+      if(p.y < -10) Object.assign(p, mk(), {y:H+10, op:0});
+      ctx.fillStyle = p.col + p.op + ')';
+      if(p.type==='petal'){ petal(ctx,p.x,p.y,p.r,p.angle); }
+      else { ctx.beginPath(); ctx.arc(p.x,p.y,p.r*.6,0,Math.PI*2); ctx.fill(); }
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ── COUNTDOWN ── */
+(function(){
+  const target = new Date('2026-07-10T20:00:00');
+  const els = { d: document.getElementById('cd-d'), h: document.getElementById('cd-h'), m: document.getElementById('cd-m'), s: document.getElementById('cd-s') };
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    const diff = target - Date.now();
+    if(diff <= 0){ Object.values(els).forEach(e=>e.textContent='00'); return; }
+    els.d.textContent = pad(Math.floor(diff/864e5));
+    els.h.textContent = pad(Math.floor((diff%864e5)/36e5));
+    els.m.textContent = pad(Math.floor((diff%36e5)/6e4));
+    els.s.textContent = pad(Math.floor((diff%6e4)/1e3));
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ── REVEAL ── */
+(function(){
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+
+/* ── AUDIO PLAYER ── */
+(function(){
+  const audio = document.getElementById('audio');
+  const btnPlay = document.getElementById('btn-play');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const fill    = document.getElementById('player-fill');
+  const bar     = document.getElementById('player-bar');
+  const tCur    = document.getElementById('t-cur');
+  const tTot    = document.getElementById('t-tot');
+  const iPlay   = document.getElementById('icon-play');
+  const iPause  = document.getElementById('icon-pause');
+  
+  const floatBtn = document.getElementById('floating-music-btn');
+  const floatIconPlaying = document.getElementById('float-icon-playing');
+  const floatIconMuted = document.getElementById('float-icon-muted');
+
+  function fmt(s){
+    if(isNaN(s)) return '—';
+    return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+  }
+
+  if (audio && tTot) {
+    audio.addEventListener('loadedmetadata',()=>{ tTot.textContent = fmt(audio.duration); });
+  }
+
+  if (audio && fill && tCur) {
+    audio.addEventListener('timeupdate',()=>{
+      if(!audio.duration) return;
+      const pct = (audio.currentTime/audio.duration)*100;
+      fill.style.width = pct+'%';
+      tCur.textContent = fmt(audio.currentTime);
+    });
+  }
+
+  function setPlaying(v){
+    if (iPlay) iPlay.style.display  = v ? 'none'  : '';
+    if (iPause) iPause.style.display = v ? ''      : 'none';
+    if (floatBtn && floatIconPlaying && floatIconMuted) {
+      if(v) {
+        floatIconPlaying.style.display = '';
+        floatIconMuted.style.display = 'none';
+        floatBtn.classList.add('playing');
+      } else {
+        floatIconPlaying.style.display = 'none';
+        floatIconMuted.style.display = '';
+        floatBtn.classList.remove('playing');
+      }
+    }
+  }
+
+  if (audio && btnPlay) {
+    btnPlay.addEventListener('click',()=>{
+      if(audio.paused){ audio.play().then(() => setPlaying(true)); }
+      else            { audio.pause(); setPlaying(false); }
+    });
+  }
+
+  if (audio && floatBtn) {
+    floatBtn.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      if(audio.paused){ audio.play().then(() => setPlaying(true)); }
+      else            { audio.pause(); setPlaying(false); }
+    });
+  }
+
+  if (audio && btnPrev) {
+    btnPrev.addEventListener('click',()=>{ audio.currentTime=0; });
+  }
+  if (audio && btnNext) {
+    btnNext.addEventListener('click',()=>{ audio.currentTime=Math.max(0,audio.duration-5||0); });
+  }
+
+  if (audio && bar) {
+    /* seek on bar click */
+    bar.addEventListener('click',e=>{
+      if(!audio.duration) return;
+      const rect = bar.getBoundingClientRect();
+      audio.currentTime = ((e.clientX-rect.left)/rect.width)*audio.duration;
+    });
+  }
+
+  // Autoplay handler on first user interaction
+  function attemptPlay() {
+    if (!audio) return;
+    audio.play().then(() => {
+      setPlaying(true);
+      cleanListeners();
+    }).catch(err => {
+      console.log("Autoplay blocked, waiting for user gesture...");
+    });
+  }
+
+  function userGesturePlay() {
+    if (!audio) return;
+    if (!audio.paused) {
+      cleanListeners();
+      return;
+    }
+    audio.play().then(() => {
+      setPlaying(true);
+      cleanListeners();
+    }).catch(err => {
+      console.log("Audio failed to play on gesture: ", err);
+    });
+  }
+
+  function cleanListeners() {
+    document.removeEventListener('click', userGesturePlay);
+    document.removeEventListener('touchstart', userGesturePlay);
+    document.removeEventListener('mousedown', userGesturePlay);
+    document.removeEventListener('pointerdown', userGesturePlay);
+    document.removeEventListener('scroll', userGesturePlay);
+    window.removeEventListener('load', attemptPlay);
+  }
+
+  // Try autoplay immediately when metadata / audio can play
+  attemptPlay();
+
+  // Try again when fully loaded
+  window.addEventListener('load', attemptPlay);
+
+  // Bind to multiple interaction events to ensure compatibility
+  document.addEventListener('click', userGesturePlay, { passive: true });
+  document.addEventListener('touchstart', userGesturePlay, { passive: true });
+  document.addEventListener('mousedown', userGesturePlay, { passive: true });
+  document.addEventListener('pointerdown', userGesturePlay, { passive: true });
+  document.addEventListener('scroll', userGesturePlay, { passive: true });
+})();
+</script>
+</body>
+</html>
