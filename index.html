@@ -1096,6 +1096,313 @@
         box-shadow: 0 12px 40px rgba(232, 160, 180, 0.4);
       }
     }
+
+    /* ── PASTEL PINK THEME OVERRIDES ── */
+    :root {
+      --rose-pastel: #fce8ee;
+      --rose-pastel-d: #fbcce2;
+      --gold-d: #8c5261;
+      /* Beautiful dark metallic berry-rose gold for crisp legibility */
+      --gold-deep: #7a4652;
+      /* Even deeper rich cherry/rose gold */
+    }
+
+    #hero {
+      background: linear-gradient(135deg, var(--rose-pastel) 0%, var(--rose-pastel-d) 100%);
+    }
+
+    .hero-bg {
+      background:
+        radial-gradient(circle at 20% 30%, rgba(232, 160, 180, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(196, 162, 101, 0.25) 0%, transparent 60%),
+        linear-gradient(135deg, var(--rose-pastel) 0%, var(--rose-pastel-d) 100%) !important;
+      opacity: .95;
+    }
+
+    .hero-vignette {
+      background:
+        linear-gradient(to top, var(--rose-pastel) 0%, rgba(252, 232, 238, .4) 40%, transparent 70%),
+        linear-gradient(to bottom, rgba(252, 232, 238, .3) 0%, transparent 30%) !important;
+    }
+
+    .hero-ring {
+      border: 1.5px solid rgba(122, 70, 82, .22) !important;
+    }
+
+    .hero-pre {
+      color: var(--gold-deep) !important;
+      font-weight: 700 !important;
+      letter-spacing: .5em !important;
+    }
+
+    .hero-xv {
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+      -webkit-text-fill-color: var(--dark) !important;
+      color: var(--dark) !important;
+      filter: none !important;
+      text-shadow: 0 1px 2px rgba(252, 232, 238, 0.6) !important;
+    }
+
+    .hero-name {
+      color: var(--dark) !important;
+      text-shadow: 0 1px 2px rgba(252, 232, 238, 0.5) !important;
+    }
+
+    .hero-date {
+      color: var(--dark) !important;
+      font-weight: 700 !important;
+      letter-spacing: .4em !important;
+    }
+
+    .hero-scroll span {
+      color: var(--gold-deep) !important;
+      font-weight: 700 !important;
+      letter-spacing: .35em !important;
+    }
+
+    .scroll-chevron {
+      stroke: var(--gold-deep) !important;
+      stroke-width: 2.2px !important;
+    }
+
+    #mensaje {
+      background: linear-gradient(160deg, var(--rose-pastel) 0%, var(--rose-pastel-d) 100%);
+    }
+
+    #mensaje .t-label {
+      color: var(--gold-deep) !important;
+      font-weight: 700 !important;
+    }
+
+    .mensaje-sign {
+      font-family: 'Italianno', cursive !important;
+      font-size: 2.8rem !important;
+      text-transform: none !important;
+      letter-spacing: normal !important;
+      font-weight: 400 !important;
+      color: var(--gold-deep) !important;
+      margin-top: 1rem !important;
+    }
+
+    #mensaje .t-title {
+      color: var(--dark) !important;
+    }
+
+    #mensaje .gold-bar {
+      background: var(--rose-d) !important;
+      height: 1.5px !important;
+    }
+
+    .mensaje-quote {
+      color: var(--dark) !important;
+    }
+
+    #detalles {
+      background: linear-gradient(160deg, var(--rose-pastel-d) 0%, var(--rose-pastel) 100%);
+    }
+
+    #detalles .t-label,
+    #detalles .d-title,
+    #detalles .d-icon {
+      color: var(--gold-deep) !important;
+      font-weight: 600 !important;
+    }
+
+    #detalles .t-title {
+      color: var(--dark) !important;
+    }
+
+    #detalles .gold-bar {
+      background: var(--rose-d) !important;
+      height: 1.5px !important;
+    }
+
+    #detalles .d-card {
+      border: 1.5px solid var(--rose-d) !important;
+      background: rgba(255, 255, 255, .65) !important;
+      backdrop-filter: blur(10px) !important;
+      box-shadow: 0 4px 18px rgba(122, 70, 82, 0.05) !important;
+    }
+
+    #detalles .d-value {
+      color: var(--dark) !important;
+    }
+
+    #detalles .d-value a {
+      color: var(--rose-d) !important;
+      font-weight: 600 !important;
+      border-bottom-color: rgba(181, 107, 127, .6) !important;
+    }
+
+    #vestimenta {
+      background: linear-gradient(160deg, var(--rose-pastel) 0%, var(--rose-pastel-d) 100%);
+    }
+
+    #vestimenta .t-label,
+    #vestimenta .c-label {
+      color: var(--gold-deep) !important;
+      font-weight: 700 !important;
+    }
+
+    #vestimenta .t-title {
+      color: var(--dark) !important;
+    }
+
+    #vestimenta .gold-bar {
+      background: var(--rose-d) !important;
+      height: 1.5px !important;
+    }
+
+    .dress-text {
+      color: var(--dark) !important;
+    }
+
+    .reserved-pill {
+      color: var(--gold-deep) !important;
+      border: 1.5px solid var(--rose-d) !important;
+      font-weight: 600 !important;
+      background: rgba(122, 70, 82, 0.08) !important;
+    }
+
+    #confirmacion {
+      background: linear-gradient(160deg, var(--rose-pastel-d) 0%, var(--rose-pastel) 100%);
+    }
+
+    #confirmacion .t-label,
+    #confirmacion .parents-by {
+      color: var(--gold-deep) !important;
+      font-weight: 700 !important;
+    }
+
+    #confirmacion .t-title,
+    #confirmacion .parents-names {
+      color: var(--dark) !important;
+    }
+
+    #confirmacion .gold-bar {
+      background: var(--rose-d) !important;
+      height: 1.5px !important;
+    }
+
+    .confirm-text {
+      color: var(--dark) !important;
+    }
+
+    .btn-confirm-yes {
+      box-shadow: 0 4px 14px rgba(32, 175, 83, 0.3) !important;
+    }
+
+    .btn-confirm-no {
+      background: rgba(122, 70, 82, 0.08) !important;
+      color: var(--gold-deep) !important;
+      border: 1.5px solid var(--rose-d) !important;
+      font-weight: 700 !important;
+    }
+
+    .parents {
+      border-top: 1.5px solid var(--rose-d) !important;
+    }
+
+    footer {
+      background: var(--rose-pastel-d) !important;
+      color: var(--dark) !important;
+      border-top: 1px solid rgba(122, 70, 82, 0.2) !important;
+      font-weight: 700 !important;
+    }
+
+    footer em {
+      color: var(--gold-deep) !important;
+    }
+
+    .c-swatch {
+      border: 2px solid var(--rose-d) !important;
+      box-shadow: 0 4px 12px rgba(112, 83, 88, 0.1) !important;
+    }
+
+    .floating-music-btn {
+      border: 1.5px solid var(--rose-d) !important;
+      box-shadow: 0 8px 32px rgba(181, 107, 127, 0.15) !important;
+    }
+
+    .floating-music-btn.playing {
+      background: var(--rose-pastel) !important;
+      border-color: var(--rose-d) !important;
+      color: var(--gold-deep) !important;
+    }
+
+    @media (max-width: 768px) {
+      #confirmacion {
+        padding-bottom: 8.5rem !important;
+      }
+    }
+
+    /* ── CENTERED TIMELINE ── */
+    .timeline {
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 0 !important;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      top: 1rem;
+      bottom: 3rem;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent) !important;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .tl-row {
+      position: relative;
+      margin-bottom: 2.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center !important;
+      text-align: center !important;
+      gap: 0.1rem;
+      z-index: 1;
+    }
+
+    .tl-dot {
+      position: relative !important;
+      left: auto !important;
+      top: auto !important;
+      width: 10px !important;
+      height: 10px !important;
+      border-radius: 50%;
+      background: var(--cream) !important;
+      border: 2px solid var(--gold) !important;
+      box-shadow: 0 0 0 3px rgba(196, 162, 101, .15) !important;
+      margin-bottom: 0.6rem !important;
+      z-index: 2;
+    }
+
+    .tl-time {
+      font-family: 'Libre Caslon Display', serif;
+      font-weight: 600 !important;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-shadow: 0 0 8px var(--cream), 0 0 12px var(--cream) !important;
+      z-index: 2;
+    }
+
+    .tl-event {
+      font-family: 'Italianno', cursive;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 0.9;
+      text-shadow: 0 0 8px var(--cream), 0 0 12px var(--cream) !important;
+      z-index: 2;
+    }
   </style>
 </head>
 
@@ -1127,7 +1434,7 @@
 
     <a href="#fotos" class="hero-scroll" style="text-decoration:none;cursor:pointer;">
       <span>descubrir</span>
-      <svg class="scroll-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)"
+      <svg class="scroll-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mid)"
         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 9 12 15 18 9" />
       </svg>
@@ -1330,9 +1637,9 @@
       <p class="dress-text reveal" data-d="1">
         La noche será <em>formal y elegante</em>.<br>
         Te solicitamos amablemente <strong>evitar vestir los colores <span
-            style="color:#f5b6c2;font-weight:600;">Rosa</span>, <span
-            style="color:#e4d7c5;font-weight:600;">Beige</span> y <span
-            style="color:#cca762;font-weight:600;">Dorado</span></strong>, ya que están reservados exclusivamente para
+            style="color:#c04b63;font-weight:700;">Rosa</span>, <span
+            style="color:#7e6b54;font-weight:700;">Beige</span> y <span
+            style="color:#9e7326;font-weight:700;">Dorado</span></strong>, ya que están reservados exclusivamente para
         la cumpleañera.
       </p>
       <div class="colors-row reveal" data-d="2">
@@ -1389,7 +1696,7 @@
         <div class="gold-bar"></div>
       </div>
       <p class="confirm-text reveal" data-d="1">
-        Por favor confirma tu asistencia antes del <strong>3 de julio de 2026</strong> haciendo clic en cualquiera de
+        Por favor confirma tu asistencia antes del <strong>10 de junio de 2026</strong> haciendo clic en cualquiera de
         las siguientes opciones.
       </p>
       <div class="btn-row reveal" data-d="2">
